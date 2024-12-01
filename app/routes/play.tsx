@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 import * as styles from "../styles.css";
-import { json, type TypedResponse } from "@remix-run/node";
+import { json, type TypedResponse } from "@remix-run/cloudflare";
 import {Form, useActionData, useLoaderData} from "@remix-run/react";
 import {getSession, commitSession, destroySession} from "~/sessions";
 
@@ -139,11 +139,11 @@ export default function Play() {
     //     setCurrentGuess(e.target.value.toLowerCase());
     // };
 
-    const handleTryAgain = () => {
-        setTurn(0);
-        const rows = initRows();
-        setRows(rows);
-    };
+    // const handleTryAgain = () => {
+    //     setTurn(0);
+    //     const rows = initRows();
+    //     setRows(rows);
+    // };
 
     return (
         <div className={styles.wrapper}>
