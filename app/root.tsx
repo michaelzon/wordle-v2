@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import * as styles from "./styles.css";
 
 
 export const links: LinksFunction = () => [
@@ -30,8 +31,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className={styles.container}> {/* Apply the container class globally */}
+      {children}
         <ScrollRestoration />
         <Scripts />
       </body>

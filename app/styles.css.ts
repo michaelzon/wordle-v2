@@ -1,16 +1,9 @@
-import { style, keyframes } from "@vanilla-extract/css";
+import {style, keyframes, globalFontFace} from "@vanilla-extract/css";
 
 // Keyframes
 const fadeInAnimation = keyframes({
     from: { opacity: 0 },
     to: { opacity: 1 },
-});
-
-// todo fix this
-export const root = style({
-    border: "1px solid red",
-    background: "black",
-    color: "#454545",
 });
 
 export const container = style({
@@ -21,6 +14,7 @@ export const container = style({
     display: "flex",
     justifyContent: "space-evenly",
     gap: "2rem",
+    fontFamily: "sans-serif",
 });
 
 export const wrapper = style({
