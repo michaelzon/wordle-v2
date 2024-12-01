@@ -23,7 +23,7 @@ npm run start
 Generate types for your Cloudflare bindings in `wrangler.toml`:
 
 ```sh
-npm run typegen
+npm run typegen,
 ```
 
 You will need to rerun typegen whenever you make changes to `wrangler.toml`.
@@ -45,3 +45,10 @@ npm run deploy
 ## Styling
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+
+## Process 
+
+I used create-cloudflare to create a new remix project (https://www.npmjs.com/package/create-cloudflare), using this guide: https://developers.cloudflare.com/pages/framework-guides/deploy-a-remix-site/#deploy-via-the-cloudflare-dashboard
+
+Installed vanilla extract plugin for vite (https://vanilla-extract.style/documentation/integrations/vite/)
+
