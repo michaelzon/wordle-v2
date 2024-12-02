@@ -1,4 +1,4 @@
-import {style, keyframes, globalFontFace} from "@vanilla-extract/css";
+import {style, keyframes} from "@vanilla-extract/css";
 
 // Keyframes
 const fadeInAnimation = keyframes({
@@ -98,34 +98,38 @@ export const letterPresent = style({
 });
 
 export const input = style({
-    width: "100%", // Make it responsive; can be adjusted
-    maxWidth: "20rem", // Restrict maximum width for better alignment
-    padding: "0.8rem 1rem", // Add padding for better UX
-    fontSize: "1.2rem", // Keep font size consistent with the design
-    borderRadius: "0.4rem", // Match with buttons and grid tiles
-    border: "2px solid #3b3b3c", // Consistent with your grid and button styles
-    backgroundColor: "#282828", // Match with the dark theme
-    color: "white", // High contrast for readability
-    outline: "none", // Remove default browser outline
-    transition: "border-color 0.2s, box-shadow 0.2s", // Smooth transitions for focus
+    width: "100%",
+    maxWidth: "20rem",
+    padding: "0.8rem 1rem",
+    fontSize: "1.2rem",
+    borderRadius: "0.4rem",
+    border: "2px solid #3b3b3c",
+    backgroundColor: "#282828",
+    color: "white",
+    outline: "none",
+    transition: "border-color 0.2s, box-shadow 0.2s",
 
     selectors: {
         "&::placeholder": {
-            color: "#7a7a7a", // Subtle placeholder text color
+            color: "#7a7a7a",
         },
         "&:hover": {
-            borderColor: "#4a4a4a", // Slight highlight on hover
+            borderColor: "#4a4a4a",
         },
         "&:focus": {
-            borderColor: "#ffffff", // Highlight border when focused
-            boxShadow: "0 0 0 3px rgba(255, 255, 255, 0.5)", // Glow effect
+            borderColor: "#ffffff",
+            boxShadow: "0 0 0 3px rgba(255, 255, 255, 0.5)",
         },
         "&:disabled": {
-            backgroundColor: "#444444", // Disabled state background
-            color: "#888888", // Disabled text color
-            borderColor: "#555555", // Disabled border color
-            cursor: "not-allowed", // Indicate disabled state
+            backgroundColor: "#444444",
+            color: "#888888",
+            borderColor: "#555555",
+            cursor: "not-allowed",
         },
     },
 });
+
+export const link = style({
+    color: "white"
+})
 

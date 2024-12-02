@@ -1,7 +1,7 @@
 import { useEffect, useState} from "react";
 import * as styles from "../styles.css";
 import { json, type TypedResponse } from "@remix-run/cloudflare";
-import {Form, useActionData, useLoaderData} from "@remix-run/react";
+import {Form, Link, useActionData, useLoaderData} from "@remix-run/react";
 import {getSession, commitSession, destroySession} from "~/sessions";
 
 interface Tile {
@@ -63,9 +63,8 @@ export const action = async ({ request }: { request: Request }): Promise<TypedRe
     const formData = await request.formData();
 
     if (formData.get("tryAgain")) {
-        // Destroy the session and clear the cookie
         return json<ActionData>(
-            { error: null, evaluation: null }, // Ensure this matches ActionData
+            { error: null, evaluation: null },
             {
                 headers: {
                     "Set-Cookie": await destroySession(session),
@@ -97,7 +96,6 @@ export default function Play() {
     const actionData = useActionData<ActionData>();
     const [turn, setTurn] = useState<number>(0);
     console.log(mysteryWord)
-    // Initialize rows for the grid
     const initRows = (): Tile[][] => {
         return Array(5)
             .fill(null)
@@ -118,7 +116,6 @@ export default function Play() {
 
     const [currentGuess, setCurrentGuess] = useState<string>("");
 
-    // Update rows with evaluations from action
     useEffect(() => {
         if (actionData?.evaluation) {
             const newRows = [...rows];
@@ -135,30 +132,19 @@ export default function Play() {
         }
     }, [actionData]);
 
-    // const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setCurrentGuess(e.target.value.toLowerCase());
-    // };
-
-    // const handleTryAgain = () => {
-    //     setTurn(0);
-    //     const rows = initRows();
-    //     setRows(rows);
-    // };
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.grid} role="grid">
                 {rows.map((row: Tile[], rowIndex) => (
                     <div className={styles.gridRow} role="row" key={rowIndex}>
                         {row.map((tile, colIndex) => {
-                            // Determine the class names for each grid item
                             const tileClasses = [
                                 styles.gridItem,
                                 tile.letter !== "" && styles.gridItemFilled,
                                 tile.evaluation === "present" && styles.letterPresent,
                                 tile.evaluation === "correct" && styles.letterCorrect,
                             ]
-                                .filter(Boolean) // Remove any `false` or undefined values
+                                .filter(Boolean)
                                 .join(" ");
 
                             return (
@@ -178,7 +164,6 @@ export default function Play() {
                 ))}
             </div>
 
-            {/* Form for submitting guesses */}
             <Form method="post">
                 <input
                     type="text"
@@ -189,19 +174,25 @@ export default function Play() {
                     placeholder="Enter your guess"
                     className={styles.input}
                 />
-                <input  type="hidden" name={"mysteryWord"} value={mysteryWord} />
+                <input type="hidden" name={"mysteryWord"} value={mysteryWord}/>
                 <button type="submit" className={`${styles.containerButton} theme`}>
                     Submit
                 </button>
             </Form>
             {turn === 5 && (
                 <Form method="post">
-                    <input type="hidden" name="tryAgain" value="true" />
+                    <input type="hidden" name="tryAgain" value="true"/>
                     <button type="submit" className={`${styles.containerButton} theme`}>
                         Try Again
                     </button>
                 </Form>
             )}
+            <footer className={"footer"}>
+                <p className={"author"}>
+                    Made by: Michael Zonneveld. <Link to={"https://github.com/michaelzon/wordle-v2"} className={styles.link}>View
+                    on GitHub</Link>
+                </p>
+            </footer>
         </div>
     );
 
