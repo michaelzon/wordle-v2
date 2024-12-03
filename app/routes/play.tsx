@@ -95,7 +95,6 @@ export default function Play() {
     const { sessionMysteryWord: mysteryWord } = useLoaderData<typeof loader>();
     const actionData = useActionData<ActionData>();
     const [turn, setTurn] = useState<number>(0);
-    console.log(mysteryWord)
     const initRows = (): Tile[][] => {
         return Array(5)
             .fill(null)
